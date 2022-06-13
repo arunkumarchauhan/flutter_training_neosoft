@@ -14,9 +14,6 @@ class SelectionScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 60,
-              ),
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, Category.url);
@@ -29,7 +26,10 @@ class SelectionScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 80,
                         alignment: Alignment.center,
-                        child: const Text("Category Screen")),
+                        child: const Text(
+                          "Category Screen",
+                          style: TextStyle(fontSize: 18),
+                        )),
                   ),
                 ),
               )
