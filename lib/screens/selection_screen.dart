@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:training/screens/build_your_own_widget/category.dart';
 
 class SelectionScreen extends StatelessWidget {

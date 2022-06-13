@@ -21,9 +21,12 @@ class CategoryItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                size: 60,
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Icon(
+                  icon,
+                  size: 60,
+                ),
               ),
               const SizedBox(width: 20),
               Text(
