@@ -13,19 +13,23 @@ class CategoryItem extends StatelessWidget {
       color: Colors.greenAccent,
       child: InkWell(
         splashColor: Colors.blueAccent,
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(50)),
         onTap: () {},
-        child: Padding(
-          padding: const EdgeInsets.all(20),
+        child: Container(
+          height: 100,
+          padding: const EdgeInsets.all(8),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Icon(
                 icon,
-                size: 24,
+                size: 60,
               ),
               const SizedBox(width: 20),
-              Text(text),
+              Text(
+                text,
+                style: const TextStyle(fontSize: 24),
+              ),
             ],
           ),
         ),

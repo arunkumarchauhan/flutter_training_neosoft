@@ -14,27 +14,30 @@ class Category extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 20),
-          Row(
-            children: [
-              const SizedBox(
-                width: 15,
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.cancel,
-                  size: 24,
-                  color: Colors.black54,
+          Container(
+            padding: const EdgeInsets.all(8),
+            height: 100,
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 15,
                 ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              const Text("UNIT CONVERTER")
-            ],
+                IconButton(
+                  icon: const Icon(
+                    Icons.cancel,
+                    size: 24,
+                    color: Colors.black54,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                const Text("UNIT CONVERTER")
+              ],
+            ),
           ),
           Flexible(
             child: ListView.builder(
