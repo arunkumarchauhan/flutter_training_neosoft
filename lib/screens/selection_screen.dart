@@ -22,7 +22,7 @@ class SelectionScreen extends StatelessWidget {
                   child: InkWell(
                     splashColor: Colors.blueAccent,
                     child: Container(
-                        color: Color.fromARGB(255, 134, 244, 137),
+                        color: const Color.fromARGB(255, 134, 244, 137),
                         width: double.infinity,
                         height: 80,
                         alignment: Alignment.center,
