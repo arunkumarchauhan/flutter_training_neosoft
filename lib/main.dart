@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:training/screens/selection_screen.dart';
+import 'package:training/screens/slivers/sliver_screen.dart';
 import './screens/build_your_own_widget//category.dart';
 
 void main() {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": ((context) => const SelectionScreen()),
         Category.url: (context) => const Category(),
-        SelectionScreen.url: (context) => const SelectionScreen()
+        SelectionScreen.url: (context) => const SelectionScreen(),
+        SliverScreen.url: (context) => const SliverScreen(),
       },
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.greenAccent,
