@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:training/screens/build_custom_layout/flutter_layout_demo_screen.dart';
 import 'package:training/screens/build_your_own_widget/category.dart';
+import 'package:training/screens/navigator/navigate_first_screen.dart';
 import 'package:training/screens/slivers/sliver_screen.dart';
 
 class SelectionScreen extends StatelessWidget {
   static const String url = "SELECTION_SCREEN";
+
   const SelectionScreen({Key? key}) : super(key: key);
 
   @override
@@ -18,6 +21,12 @@ class SelectionScreen extends StatelessWidget {
               ),
               ScreenSelectionButton(
                 url: SliverScreen.url,
+              ),
+              ScreenSelectionButton(
+                url: LayoutDemoScreen.url,
+              ),
+              ScreenSelectionButton(
+                url: NavigatorFirstScreen.url,
               )
             ],
           ),
@@ -28,6 +37,7 @@ class SelectionScreen extends StatelessWidget {
 class ScreenSelectionButton extends StatelessWidget {
   const ScreenSelectionButton({Key? key, required this.url}) : super(key: key);
   final String url;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -38,9 +48,9 @@ class ScreenSelectionButton extends StatelessWidget {
         child: InkWell(
           splashColor: Colors.blueAccent,
           child: Container(
-            decoration: BoxDecoration( color: const Color.fromARGB(255, 134, 244, 137),
-            border: Border.all(color: Colors.amberAccent,width: 5)
-            ),
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 134, 244, 137),
+                  border: Border.all(color: Colors.amberAccent, width: 5)),
               width: double.infinity,
               height: 80,
               alignment: Alignment.center,

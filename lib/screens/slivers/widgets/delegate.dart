@@ -4,10 +4,11 @@ class Delegate extends SliverPersistentHeaderDelegate {
   final Color backgroundColor;
   final String _title;
 
-  Delegate(this.backgroundColor, this._title,{Key? key});
+  Delegate(this.backgroundColor, this._title, {Key? key});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       color: backgroundColor,
       child: Center(
