@@ -6,6 +6,8 @@ import 'package:training/screens/build_custom_layout/flutter_layout_demo_screen.
 import 'package:training/screens/build_your_own_widget/category.dart';
 import 'package:training/screens/lifecycle/lifecycle.dart';
 import 'package:training/screens/navigator/navigate_first_screen.dart';
+import 'package:training/screens/networking/networking_demo.dart';
+import 'package:training/screens/responsive/responsive_demo.dart';
 import 'package:training/screens/slivers/sliver_screen.dart';
 class SelectionScreen extends StatelessWidget {
   static const String url = "SELECTION_SCREEN";
@@ -36,6 +38,12 @@ class SelectionScreen extends StatelessWidget {
               ),
               ScreenSelectionButton(
                 url: LifecycleApp.url,
+              ),
+              ScreenSelectionButton(
+                url: ResponsiveDemo.url,
+              ),
+              ScreenSelectionButton(
+                url: NetworkingDemo.url,
               )
             ],
           ),

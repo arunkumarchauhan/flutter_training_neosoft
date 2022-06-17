@@ -13,6 +13,7 @@ class Category extends StatelessWidget {
     return BackdropScaffold(
       revealBackLayerAtStart: true,
       appBar: BackdropAppBar(
+
         backgroundColor: Colors.greenAccent,
         elevation: 0,
         title: const Text(
@@ -60,9 +61,11 @@ class Category extends StatelessWidget {
           },
         );
       }),
+
       frontLayer: Container(
         color: Colors.white,
       ),
+            
     );
   }
 }

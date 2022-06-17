@@ -9,6 +9,10 @@ import 'package:training/screens/navigator/navigator_fifth_screen.dart';
 import 'package:training/screens/navigator/navigator_fourth_screen.dart';
 import 'package:training/screens/navigator/navigator_second_screen.dart';
 import 'package:training/screens/navigator/navigator_third_screen.dart';
+import 'package:training/screens/networking/networking_demo.dart';
+import 'package:training/screens/responsive/responsive_demo.dart';
+import 'package:training/screens/responsive/stack_demo.dart';
+import 'package:training/screens/responsive/wrap_demo.dart';
 import 'package:training/screens/selection_screen.dart';
 import 'package:training/screens/slivers/sliver_screen.dart';
 import 'package:training/theme_data_constants.dart';
@@ -43,6 +47,11 @@ class MyApp extends StatelessWidget {
               NavigatorFifthScreen.url:(context)=>const NavigatorFifthScreen(),
               LifecycleApp.url:(context)=>const LifecycleApp(),
               DeactivateDemoScreen.url:(context)=>const DeactivateDemoScreen(),
+              ResponsiveDemo.url:(_)=>const ResponsiveDemo(),
+              WrapDemo.url:(_)=> const WrapDemo(),
+              StackDemo.url:(_)=>const StackDemo(),
+              NetworkingDemo.url:(_)=>const NetworkingDemo(),
+
             },
             onGenerateRoute: (settings) {
               if (settings.name == NavigatorThirdScreen.url) {

@@ -1,0 +1,1 @@
+const String albumUrl="https://jsonplaceholder.typicode.com/photos";
