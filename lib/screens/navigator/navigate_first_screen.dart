@@ -3,6 +3,7 @@ import 'package:training/screens/navigator/book_app.dart';
 import 'package:training/screens/navigator/copy_navigator_boor_route.dart';
 import 'package:training/screens/navigator/navigator_second_screen.dart';
 import 'package:training/screens/navigator/navigator_third_screen.dart';
+import 'package:training/screens/navigator/widgets/build_elevated_button.dart';
 
 class NavigatorFirstScreen extends StatelessWidget {
   const NavigatorFirstScreen({Key? key}) : super(key: key);
@@ -19,38 +20,38 @@ class NavigatorFirstScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-           _buildElevatedButton("Push Unnamed Route", () async {
+           buildElevatedButton("Push Unnamed Route", () async {
              var data = await Navigator.push(
                  context,
                  MaterialPageRoute(
-                     builder: (context) => const NavigatorSecondScreen()));
+                     builder: (context) => const NavigatorSecondScreen(),settings: RouteSettings(name: NavigatorSecondScreen.url)));
              print(data);
            }),
-        _buildElevatedButton("Push Named Route Retrieve Data in",  () async {
+        buildElevatedButton("Push Named Route Retrieve Data in",  () async {
           var data = await Navigator.pushNamed(
               context, NavigatorSecondScreen.url,
               arguments: "Data from First Screen Named Push");
           print(data);
         }),
 
-          _buildElevatedButton("Push Named Route Retrieve Data in Ongenerated ROute", ()async {
+          buildElevatedButton("Push Named Route Retrieve Data in Ongenerated ROute", ()async {
             var data = await Navigator.pushNamed(
                 context, NavigatorThirdScreen.url,
                 arguments:
                 "Data from First Screen pushNamed onGeneratedRoute");
             print(data);
           }),
-            _buildElevatedButton( "Push Named Route Retrieve id from url in Ongenerated Route",() async {
+            buildElevatedButton( "Push Named Route Retrieve id from url in Ongenerated Route",() async {
               var data = await Navigator.pushNamed(
                   context, NavigatorThirdScreen.url+"/2",
                   arguments:
-                  "onGenerated Route parse ID");
+                  "onGenerated Roßute parse ID");
               print(data);
             }),
-            _buildElevatedButton("Navigator 2.0 Pages", (){
+            buildElevatedButton("Navigator 2.0 Pages", (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>BookAppPages()));
             }),
-            _buildElevatedButton("Navigator 2.0 Router", (){
+            buildElevatedButton("Navigator 2.0 Router", (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>BooksAppCopy()));
             })
           ],
@@ -59,14 +60,5 @@ class NavigatorFirstScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildElevatedButton( String text,Function onTap){
-    return  Container(
-      width: double.infinity,
-      child: ElevatedButton(
 
-        onPressed: ()=>onTap(),
-        child:  Text(text),
-      ),
-    );
-  }
 }

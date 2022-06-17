@@ -44,9 +44,11 @@ class CategoryItem extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20),
-            Text(
-              item.text,
-              style: const TextStyle(fontSize: 24),
+            Flexible(
+              child: Text(
+                item.text,
+                style: const TextStyle(fontSize: 24),
+              ),
             ),
           ],
         ),

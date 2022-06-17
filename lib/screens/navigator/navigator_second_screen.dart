@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:training/screens/navigator/navigator_third_screen.dart';
+import 'package:training/screens/navigator/widgets/build_elevated_button.dart';
 
 class NavigatorSecondScreen extends StatelessWidget {
   const NavigatorSecondScreen({Key? key}) : super(key: key);
@@ -13,18 +15,17 @@ class NavigatorSecondScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context, "Pop back data unnamed route");
-              },
-              child: const Text("Pop Unnamed Route"),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context, "Pop back data NamedPush ModalRoute");
-              },
-              child: const Text("Pop back data NamedPush"),
-            )
+
+        buildElevatedButton("Pop Unnamed Route", () {
+          Navigator.pop(context, "Pop back data unnamed route");
+        }),
+
+          buildElevatedButton("Pop back data NamedPush", () {
+            Navigator.pop(context, "Pop back data NamedPush ModalRoute");
+          }),
+            buildElevatedButton("Push NavigatorThirdScreen", (){
+              Navigator.pushNamed(context, NavigatorThirdScreen.url);
+            })
           ],
         ),
       ),

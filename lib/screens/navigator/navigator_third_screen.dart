@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:training/screens/navigator/navigator_fourth_screen.dart';
+import 'package:training/screens/navigator/widgets/build_elevated_button.dart';
 
 class NavigatorThirdScreen extends StatelessWidget {
   const NavigatorThirdScreen({Key? key}) : super(key: key);
@@ -12,12 +14,16 @@ class NavigatorThirdScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
+
           children: [
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context, "onGenerateRoute Pop data");
-                },
-                child: const Text("Pop Extract Data with onGenerate ROute"))
+
+            buildElevatedButton("Pop Extract Data with onGenerate ROute", () {
+              Navigator.pop(context, "onGenerateRoute Pop data");
+            }),
+            buildElevatedButton("Push NavigatorFourthScreen", () {
+          Navigator.pushNamed(context, NavigatorFourthScreen.url);
+            }),
+
           ],
         ),
       ),

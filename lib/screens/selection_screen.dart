@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:training/main.dart';
+import 'package:training/provider/theme_manager_provider.dart';
 import 'package:training/screens/build_custom_layout/flutter_layout_demo_screen.dart';
 import 'package:training/screens/build_your_own_widget/category.dart';
+import 'package:training/screens/lifecycle/lifecycle.dart';
 import 'package:training/screens/navigator/navigate_first_screen.dart';
 import 'package:training/screens/slivers/sliver_screen.dart';
-
 class SelectionScreen extends StatelessWidget {
   static const String url = "SELECTION_SCREEN";
 
@@ -11,8 +14,11 @@ class SelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeManager _themeManager=Provider.of<ThemeManager>(context);
     return Scaffold(
-        appBar: AppBar(title: const Text("Selection Screen")),
+        appBar: AppBar(title: const Text("Selection Screen"),actions: [Switch(value: _themeManager.themeMode==ThemeMode.dark,onChanged: (bool isDark){
+          _themeManager.toggleTheme(isDark);
+        },)],),
         body: SingleChildScrollView(
           child: Column(
             children: const [
@@ -27,6 +33,9 @@ class SelectionScreen extends StatelessWidget {
               ),
               ScreenSelectionButton(
                 url: NavigatorFirstScreen.url,
+              ),
+              ScreenSelectionButton(
+                url: LifecycleApp.url,
               )
             ],
           ),
@@ -49,7 +58,7 @@ class ScreenSelectionButton extends StatelessWidget {
           splashColor: Colors.blueAccent,
           child: Container(
               decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 134, 244, 137),
+                  color: Theme.of(context).cardColor,
                   border: Border.all(color: Colors.amberAccent, width: 5)),
               width: double.infinity,
               height: 80,
