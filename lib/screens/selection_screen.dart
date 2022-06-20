@@ -5,6 +5,7 @@ import 'package:training/provider/theme_manager_provider.dart';
 import 'package:training/screens/build_custom_layout/flutter_layout_demo_screen.dart';
 import 'package:training/screens/build_your_own_widget/category.dart';
 import 'package:training/screens/lifecycle/lifecycle.dart';
+import 'package:training/screens/local_db_demo/local_db_demo.dart';
 import 'package:training/screens/navigator/navigate_first_screen.dart';
 import 'package:training/screens/networking/networking_demo.dart';
 import 'package:training/screens/responsive/responsive_demo.dart';
@@ -44,6 +45,9 @@ class SelectionScreen extends StatelessWidget {
               ),
               ScreenSelectionButton(
                 url: NetworkingDemo.url,
+              ),
+              ScreenSelectionButton(
+                url: LocalDbDemoScreen.url,
               )
             ],
           ),
