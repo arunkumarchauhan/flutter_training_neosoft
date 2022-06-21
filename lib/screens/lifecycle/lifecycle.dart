@@ -6,13 +6,13 @@ import 'package:training/screens/lifecycle/deactivate_demo.dart';
 import 'package:training/screens/lifecycle/provider/counter_provider.dart';
 
 class LifecycleApp extends StatelessWidget {
-  static const String url="LIFECYCLE_APP";
+  static const String url = "LIFECYCLE_APP";
   const LifecycleApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CounterProvider>(
-      create: (BuildContext context)=>CounterProvider(),
+      create: (BuildContext context) => CounterProvider(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -30,18 +30,21 @@ class LifecycleHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<LifecycleHomePage> createState() => _LifecycleHomePageState();
+  State<LifecycleHomePage> createState() {
+    print("Create State Called");
+    return _LifecycleHomePageState();
+  }
 }
 
 class _LifecycleHomePageState extends State<LifecycleHomePage> {
-
   int _counter = 0;
 
-@override
-void dispose(){
-  super.dispose();
-  print("DIsposed");
-}
+  @override
+  void dispose() {
+    super.dispose();
+    print("DIsposed");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +65,6 @@ void dispose(){
 
                 setState(() {});
               },
-
             ),
           ],
         ),
@@ -100,21 +102,25 @@ class _TextViewState extends State<TextView> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    _counterProvider=Provider.of<CounterProvider>(context);
+    _counterProvider = Provider.of<CounterProvider>(context);
     print("didChangeDependencies counter : ${_counterProvider.counter}");
   }
-late CounterProvider _counterProvider;
+
+  late CounterProvider _counterProvider;
   @override
-  void didUpdateWidget( TextView oldWidget) {
+  void didUpdateWidget(TextView oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    print("didUpdateWidget New Value : ${widget._counter} ,Old Value: ${oldWidget._counter} ");
+    print(
+        "didUpdateWidget New Value : ${widget._counter} ,Old Value: ${oldWidget._counter} ");
   }
+
   @override
   void dispose() {
     super.dispose();
-print("Dispose");
+    print("Dispose");
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -141,7 +147,11 @@ print("Dispose");
               child: const Text("Decrement Change Dependency")),
           ElevatedButton(
               onPressed: () {
-                Navigator.push(context,  MaterialPageRoute(builder: (context) =>  DeactivateDemoScreen()),);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DeactivateDemoScreen()),
+                );
               },
               child: const Text("Push Deactivate Demo Screen"))
         ],

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:training/main.dart';
+import 'package:training/provider/post_notifier.dart';
 import 'package:training/provider/theme_manager_provider.dart';
 import 'package:training/screens/build_custom_layout/flutter_layout_demo_screen.dart';
 import 'package:training/screens/build_your_own_widget/category.dart';
+import 'package:training/screens/dio_demo/dio_demo_screen.dart';
+import 'package:training/screens/either_demo/either_demo_screen.dart';
 import 'package:training/screens/lifecycle/lifecycle.dart';
 import 'package:training/screens/local_db_demo/local_db_demo.dart';
 import 'package:training/screens/navigator/navigate_first_screen.dart';
 import 'package:training/screens/networking/networking_demo.dart';
 import 'package:training/screens/responsive/responsive_demo.dart';
 import 'package:training/screens/slivers/sliver_screen.dart';
+
 class SelectionScreen extends StatelessWidget {
   static const String url = "SELECTION_SCREEN";
 
@@ -17,11 +21,19 @@ class SelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeManager _themeManager=Provider.of<ThemeManager>(context);
+    ThemeManager _themeManager = Provider.of<ThemeManager>(context);
     return Scaffold(
-        appBar: AppBar(title: const Text("Selection Screen"),actions: [Switch(value: _themeManager.themeMode==ThemeMode.dark,onChanged: (bool isDark){
-          _themeManager.toggleTheme(isDark);
-        },)],),
+        appBar: AppBar(
+          title: const Text("Selection Screen"),
+          actions: [
+            Switch(
+              value: _themeManager.themeMode == ThemeMode.dark,
+              onChanged: (bool isDark) {
+                _themeManager.toggleTheme(isDark);
+              },
+            )
+          ],
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: const [
@@ -48,6 +60,12 @@ class SelectionScreen extends StatelessWidget {
               ),
               ScreenSelectionButton(
                 url: LocalDbDemoScreen.url,
+              ),
+              ScreenSelectionButton(
+                url: EitherDemoScreen.url,
+              ),
+              ScreenSelectionButton(
+                url: DioDemoScreen.url,
               )
             ],
           ),

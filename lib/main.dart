@@ -3,8 +3,11 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:training/models/db_demo/hive_note.dart';
+import 'package:training/provider/post_notifier.dart';
 import 'package:training/provider/theme_manager_provider.dart';
 import 'package:training/screens/build_custom_layout/flutter_layout_demo_screen.dart';
+import 'package:training/screens/dio_demo/dio_demo_screen.dart';
+import 'package:training/screens/either_demo/either_demo_screen.dart';
 import 'package:training/screens/lifecycle/deactivate_demo.dart';
 import 'package:training/screens/lifecycle/lifecycle.dart';
 import 'package:training/screens/local_db_demo/hive_demo_screen.dart';
@@ -39,8 +42,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ThemeManager(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ThemeManager>(
+          create: (context) => ThemeManager(),
+        ),
+      ],
       child: Builder(builder: (context) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -64,11 +71,13 @@ class MyApp extends StatelessWidget {
             WrapDemo.url: (_) => const WrapDemo(),
             StackDemo.url: (_) => const StackDemo(),
             NetworkingDemo.url: (_) => const NetworkingDemo(),
-            LocalDbDemoScreen.url: (_) => LocalDbDemoScreen(),
-            SqfliteDemoScreen.url: (_) => SqfliteDemoScreen(),
-            MoorDemoScreen.url: (_) => MoorDemoScreen(),
-            HiveDemoScreen.url: (_) => HiveDemoScreen(),
-            SharedPreferenceDemo.url: (_) => SharedPreferenceDemo(),
+            LocalDbDemoScreen.url: (_) => const LocalDbDemoScreen(),
+            SqfliteDemoScreen.url: (_) => const SqfliteDemoScreen(),
+            MoorDemoScreen.url: (_) => const MoorDemoScreen(),
+            HiveDemoScreen.url: (_) => const HiveDemoScreen(),
+            SharedPreferenceDemo.url: (_) => const SharedPreferenceDemo(),
+            EitherDemoScreen.url: (_) => const EitherDemoScreen(),
+            DioDemoScreen.url: (_) => const DioDemoScreen(),
           },
           onGenerateRoute: (settings) {
             if (settings.name == NavigatorThirdScreen.url) {

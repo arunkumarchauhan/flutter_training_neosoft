@@ -6,32 +6,31 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
 part 'moor_db.g.dart';
-class MoorNote extends Table{
-IntColumn get id=>integer().autoIncrement()();
-TextColumn get description=>text()();
 
+class MoorNote extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get description => text()();
 }
 
 @DriftDatabase(tables: [MoorNote])
-class AppDatabase extends _$AppDatabase{
-AppDatabase():super(_openConnection());
-@override
-int get schemaVersion => 1;
+class AppDatabase extends _$AppDatabase {
+  AppDatabase() : super(_openConnection());
+  @override
+  int get schemaVersion => 1;
 
   //GET All moor notes from db
-Future<List<MoorNoteData>> get notes async{
-  return await select(moorNote).get();
-}
+  Future<List<MoorNoteData>> get notes async {
+    return await select(moorNote).get();
+  }
 
 //INSERT NEw Note in db
-Future<int> insertNote(MoorNoteCompanion companion)async{
- return await into(moorNote).insert(companion);
-}
+  Future<int> insertNote(MoorNoteCompanion companion) async {
+    return await into(moorNote).insert(companion);
+  }
 
-Future<int>deleteNote(MoorNoteData note)async{
-  return await delete(moorNote).delete(note);
-}
-
+  Future<int> deleteNote(MoorNoteData note) async {
+    return await delete(moorNote).delete(note);
+  }
 }
 
 LazyDatabase _openConnection() {
@@ -44,6 +43,3 @@ LazyDatabase _openConnection() {
     return NativeDatabase(file);
   });
 }
-
-
-

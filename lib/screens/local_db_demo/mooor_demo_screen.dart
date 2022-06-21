@@ -14,6 +14,7 @@ class MoorDemoScreen extends StatefulWidget {
 class _MoorDemoScreenState extends State<MoorDemoScreen> {
   AppDatabase? _appDatabase;
   TextEditingController _textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Provider(
@@ -23,7 +24,7 @@ class _MoorDemoScreenState extends State<MoorDemoScreen> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text("Moor Db Demo Screen"),
+            title: const Text("Moor Db Demo Screen"),
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -35,11 +36,11 @@ class _MoorDemoScreenState extends State<MoorDemoScreen> {
                     )),
                 buildElevatedButton("SAVE NOTE", () async {
                   int res = await _appDatabase!.insertNote(MoorNoteCompanion(
-                      id: Value.absent(),
+                      id: const Value.absent(),
                       description: Value<String>(_textEditingController.text)));
                   if (res > 0) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text("Note Saved")));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Note Saved")));
                     setState(() {});
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
