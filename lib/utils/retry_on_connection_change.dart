@@ -8,9 +8,6 @@ class RetryOnConnectionChange extends Interceptor {
   RetryOnConnectionChange(this.dio);
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    // if (_shouldRetry(err)) {
-    //   throw Failure("Socket Exception");
-    // }
     super.onError(err, handler);
   }
 

@@ -11,7 +11,11 @@ import 'package:training/screens/lifecycle/lifecycle.dart';
 import 'package:training/screens/local_db_demo/local_db_demo.dart';
 import 'package:training/screens/navigator/navigate_first_screen.dart';
 import 'package:training/screens/networking/networking_demo.dart';
+import 'package:training/screens/proxyprovider_demo/provider_assignment_first_screen.dart';
+import 'package:training/screens/proxyprovider_demo/proxy_provider_demo_screen.dart';
 import 'package:training/screens/responsive/responsive_demo.dart';
+import 'package:training/screens/restoration/restoration_first_screen.dart';
+import 'package:training/screens/riverpod/riverpod_demo_screen.dart';
 import 'package:training/screens/slivers/sliver_screen.dart';
 
 class SelectionScreen extends StatelessWidget {
@@ -66,6 +70,18 @@ class SelectionScreen extends StatelessWidget {
               ),
               ScreenSelectionButton(
                 url: DioDemoScreen.url,
+              ),
+              ScreenSelectionButton(
+                url: RestorationFistScreen.url,
+              ),
+              ScreenSelectionButton(
+                url: ProxyProviderDemoScreen.url,
+              ),
+              ScreenSelectionButton(
+                url: ProviderAssignmentFirstScreen.url,
+              ),
+              ScreenSelectionButton(
+                url: RiverpodDemoScreen.url,
               )
             ],
           ),

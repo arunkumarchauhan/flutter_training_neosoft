@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:training/models/db_demo/hive_note.dart';
-import 'package:training/provider/post_notifier.dart';
+import 'package:training/provider/custom_counter_provider.dart';
 import 'package:training/provider/theme_manager_provider.dart';
 import 'package:training/screens/build_custom_layout/flutter_layout_demo_screen.dart';
 import 'package:training/screens/dio_demo/dio_demo_screen.dart';
@@ -21,13 +21,19 @@ import 'package:training/screens/navigator/navigator_fourth_screen.dart';
 import 'package:training/screens/navigator/navigator_second_screen.dart';
 import 'package:training/screens/navigator/navigator_third_screen.dart';
 import 'package:training/screens/networking/networking_demo.dart';
+import 'package:training/screens/proxyprovider_demo/provider_assignment_first_screen.dart';
+import 'package:training/screens/proxyprovider_demo/proxy_provider_demo_screen.dart';
 import 'package:training/screens/responsive/responsive_demo.dart';
 import 'package:training/screens/responsive/stack_demo.dart';
 import 'package:training/screens/responsive/wrap_demo.dart';
+import 'package:training/screens/restoration/restoration_first_screen.dart';
+import 'package:training/screens/restoration/restoration_second_screen.dart';
+import 'package:training/screens/riverpod/riverpod_demo_screen.dart';
 import 'package:training/screens/selection_screen.dart';
 import 'package:training/screens/slivers/sliver_screen.dart';
+import 'package:training/services/string_stream_provider.dart';
 import 'package:training/theme_data_constants.dart';
-import './screens/build_your_own_widget//category.dart';
+import './screens/build_your_own_widget/category.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +43,20 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late CustomCounterProvider _customCounterProvider;
+  @override
+  void initState() {
+    super.initState();
+    _customCounterProvider = CustomCounterProvider();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +65,22 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ThemeManager>(
           create: (context) => ThemeManager(),
         ),
+        ChangeNotifierProvider<CustomCounterProvider>.value(
+          value: _customCounterProvider,
+        ),
+        // StreamProvider<int>(
+        //   create: (_) => StringStreamGenerator().counterStream,
+        //   initialData: 0,
+        //   catchError: (_, error) {
+        //     print(error);
+        //     return -1;
+        //   },
+        // )
+        Provider(create: (_) => CounterStreamGenerator()),
       ],
       child: Builder(builder: (context) {
         return MaterialApp(
+          restorationScopeId: "app",
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           initialRoute: "/",
@@ -78,6 +109,11 @@ class MyApp extends StatelessWidget {
             SharedPreferenceDemo.url: (_) => const SharedPreferenceDemo(),
             EitherDemoScreen.url: (_) => const EitherDemoScreen(),
             DioDemoScreen.url: (_) => const DioDemoScreen(),
+            RestorationFistScreen.url: (_) => const RestorationFistScreen(),
+            ProxyProviderDemoScreen.url: (_) => const ProxyProviderDemoScreen(),
+            ProviderAssignmentFirstScreen.url: (_) =>
+                const ProviderAssignmentFirstScreen(),
+            RiverpodDemoScreen.url: (_) => const RiverpodDemoScreen(),
           },
           onGenerateRoute: (settings) {
             if (settings.name == NavigatorThirdScreen.url) {

@@ -123,6 +123,7 @@ class _TextViewState extends State<TextView> {
 
   @override
   Widget build(BuildContext context) {
+    print("Build Called");
     return Center(
       child: Column(
         children: [
