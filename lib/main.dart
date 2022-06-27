@@ -68,76 +68,84 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider<CustomCounterProvider>.value(
           value: _customCounterProvider,
         ),
-        // StreamProvider<int>(
-        //   create: (_) => StringStreamGenerator().counterStream,
-        //   initialData: 0,
-        //   catchError: (_, error) {
-        //     print(error);
-        //     return -1;
-        //   },
-        // )
-        Provider(create: (_) => CounterStreamGenerator()),
+        Provider(
+          create: (_) => CounterStreamGenerator(),
+        ),
       ],
       child: Builder(builder: (context) {
-        return MaterialApp(
-          restorationScopeId: "app",
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          initialRoute: "/",
-          routes: {
-            "/": ((context) => const SelectionScreen()),
-            Category.url: (context) => const Category(),
-            SelectionScreen.url: (context) => const SelectionScreen(),
-            SliverScreen.url: (context) => const SliverScreen(),
-            LayoutDemoScreen.url: (context) => LayoutDemoScreen(),
-            NavigatorFirstScreen.url: (context) => const NavigatorFirstScreen(),
-            NavigatorSecondScreen.url: (context) =>
-                const NavigatorSecondScreen(),
-            NavigatorFourthScreen.url: (context) =>
-                const NavigatorFourthScreen(),
-            NavigatorFifthScreen.url: (context) => const NavigatorFifthScreen(),
-            LifecycleApp.url: (context) => const LifecycleApp(),
-            DeactivateDemoScreen.url: (context) => const DeactivateDemoScreen(),
-            ResponsiveDemo.url: (_) => const ResponsiveDemo(),
-            WrapDemo.url: (_) => const WrapDemo(),
-            StackDemo.url: (_) => const StackDemo(),
-            NetworkingDemo.url: (_) => const NetworkingDemo(),
-            LocalDbDemoScreen.url: (_) => const LocalDbDemoScreen(),
-            SqfliteDemoScreen.url: (_) => const SqfliteDemoScreen(),
-            MoorDemoScreen.url: (_) => const MoorDemoScreen(),
-            HiveDemoScreen.url: (_) => const HiveDemoScreen(),
-            SharedPreferenceDemo.url: (_) => const SharedPreferenceDemo(),
-            EitherDemoScreen.url: (_) => const EitherDemoScreen(),
-            DioDemoScreen.url: (_) => const DioDemoScreen(),
-            RestorationFistScreen.url: (_) => const RestorationFistScreen(),
-            ProxyProviderDemoScreen.url: (_) => const ProxyProviderDemoScreen(),
-            ProviderAssignmentFirstScreen.url: (_) =>
-                const ProviderAssignmentFirstScreen(),
-            RiverpodDemoScreen.url: (_) => const RiverpodDemoScreen(),
+        return StreamProvider<int>.value(
+          initialData: Provider.of<CounterStreamGenerator>(context).count,
+          value: Provider.of<CounterStreamGenerator>(context)
+              .countStreamController
+              .stream,
+          catchError: (_, error) {
+            print(error);
+            return -1;
           },
-          onGenerateRoute: (settings) {
-            if (settings.name == NavigatorThirdScreen.url) {
-              final args = settings.arguments;
-              print(args);
-              return MaterialPageRoute(
-                  builder: (context) => const NavigatorThirdScreen());
-            }
+          child: MaterialApp(
+            restorationScopeId: "app",
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            initialRoute: "/",
+            routes: {
+              "/": ((context) => const SelectionScreen()),
+              Category.url: (context) => const Category(),
+              SelectionScreen.url: (context) => const SelectionScreen(),
+              SliverScreen.url: (context) => const SliverScreen(),
+              LayoutDemoScreen.url: (context) => LayoutDemoScreen(),
+              NavigatorFirstScreen.url: (context) =>
+                  const NavigatorFirstScreen(),
+              NavigatorSecondScreen.url: (context) =>
+                  const NavigatorSecondScreen(),
+              NavigatorFourthScreen.url: (context) =>
+                  const NavigatorFourthScreen(),
+              NavigatorFifthScreen.url: (context) =>
+                  const NavigatorFifthScreen(),
+              LifecycleApp.url: (context) => const LifecycleApp(),
+              DeactivateDemoScreen.url: (context) =>
+                  const DeactivateDemoScreen(),
+              ResponsiveDemo.url: (_) => const ResponsiveDemo(),
+              WrapDemo.url: (_) => const WrapDemo(),
+              StackDemo.url: (_) => const StackDemo(),
+              NetworkingDemo.url: (_) => const NetworkingDemo(),
+              LocalDbDemoScreen.url: (_) => const LocalDbDemoScreen(),
+              SqfliteDemoScreen.url: (_) => const SqfliteDemoScreen(),
+              MoorDemoScreen.url: (_) => const MoorDemoScreen(),
+              HiveDemoScreen.url: (_) => const HiveDemoScreen(),
+              SharedPreferenceDemo.url: (_) => const SharedPreferenceDemo(),
+              EitherDemoScreen.url: (_) => const EitherDemoScreen(),
+              DioDemoScreen.url: (_) => const DioDemoScreen(),
+              RestorationFistScreen.url: (_) => const RestorationFistScreen(),
+              ProxyProviderDemoScreen.url: (_) =>
+                  const ProxyProviderDemoScreen(),
+              ProviderAssignmentFirstScreen.url: (_) =>
+                  const ProviderAssignmentFirstScreen(),
+              RiverpodDemoScreen.url: (_) => const RiverpodDemoScreen(),
+            },
+            onGenerateRoute: (settings) {
+              if (settings.name == NavigatorThirdScreen.url) {
+                final args = settings.arguments;
+                print(args);
+                return MaterialPageRoute(
+                    builder: (context) => const NavigatorThirdScreen());
+              }
 
-            var uri = Uri.parse(settings.name ?? "");
-            if (uri.pathSegments.length == 2 &&
-                uri.pathSegments.first == NavigatorThirdScreen.url) {
-              var id = uri.pathSegments[1];
-              print("Extracted id from url : $id");
-              return MaterialPageRoute(
-                  builder: (context) => const NavigatorThirdScreen());
-            }
-          },
-          theme: lightTheme,
-          darkTheme: darkTheme,
-          themeMode: Provider.of<ThemeManager>(context).themeMode,
+              var uri = Uri.parse(settings.name ?? "");
+              if (uri.pathSegments.length == 2 &&
+                  uri.pathSegments.first == NavigatorThirdScreen.url) {
+                var id = uri.pathSegments[1];
+                print("Extracted id from url : $id");
+                return MaterialPageRoute(
+                    builder: (context) => const NavigatorThirdScreen());
+              }
+            },
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: Provider.of<ThemeManager>(context).themeMode,
 
-          //  home: const MyHomePage(title: 'Flutter Demo Home Page'),
-          // home: const SelectionScreen(),
+            //  home: const MyHomePage(title: 'Flutter Demo Home Page'),
+            // home: const SelectionScreen(),
+          ),
         );
       }),
     );
